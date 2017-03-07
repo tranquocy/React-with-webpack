@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'eval-source-map',
   entry: __dirname + "/app/main.js",
@@ -6,15 +8,34 @@ module.exports = {
     filename: "bundle.js"
   },
 
-  module: { 
-   loaders: [ 
-      { 
+  module: {
+   loaders: [
+      {
         test: /\.json$/,
         exclude: /node_modules/,
         loader: 'json-loader'
-      } 
-    ] 
-  }, 
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader?modules'
+      },
+      {
+        test: /\.scss$/,
+        loader: "style-loader!css-loader!sass-loader?modules"
+      }
+    ]
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+    template: __dirname + "/app/index.html"
+    })
+  ],
 
   devServer: {
     contentBase: "./public",

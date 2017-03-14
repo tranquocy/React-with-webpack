@@ -33,13 +33,15 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-    template: __dirname + "/app/index.html"
-    })
+      template: __dirname + "/app/index.html"
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
 
   devServer: {
     contentBase: "./public",
     historyApiFallback: true,
-    inline: true
+    inline: true,
+    hot: true
   }
 }

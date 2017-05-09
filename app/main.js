@@ -1,5 +1,4 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Greeter from './greeter';
+import KanbanBoard from './app';
 import './scss/main.scss';
-render(<Greeter></Greeter>, document.getElementById('root'));

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
-class List extends Component {
+class List extends React.Component {
   render() {
-    var cards = this.props.cards.map((card) => {
-      return <Card id={card.id}
-      title={card.title}
-      description={card.description}
-      tasks={card.tasks} />
+    let cards = this.props.cards.map((card) => {
+      return <Card key={card.id} taskCallbacks={this.props.taskCallbacks} {...card} />
     });
     return (
       <div className="list">
@@ -15,5 +13,12 @@ class List extends Component {
       </div>
     );
   }
+};
+
+List.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  cards: React.PropTypes.arrayOf(PropTypes.object),
+  taskCallbacks: PropTypes.object,
 }
+
 export default List;
